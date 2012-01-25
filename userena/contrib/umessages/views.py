@@ -175,7 +175,7 @@ def message_compose(request, recipients=None, compose_form=ComposeForm,
             recipients = form.cleaned_data['to']
 
             if userena_settings.USERENA_USE_MESSAGES:
-                messages.success(request, _('Message is sent.'),
+                messages.success(request, _('Message was sent.'),
                                  fail_silently=True)
 
             requested_redirect = request.REQUEST.get(REDIRECT_FIELD_NAME,
@@ -259,12 +259,12 @@ def message_remove(request, undo=False):
         # Send messages
         if (len(changed_message_list) > 0) and userena_settings.USERENA_USE_MESSAGES:
             if undo:
-                message = ungettext('Message is succesfully restored.',
-                                    'Messages are succesfully restored.',
+                message = ungettext('Message was succesfully restored.',
+                                    'Messages were succesfully restored.',
                                     len(changed_message_list))
             else:
-                message = ungettext('Message is successfully removed.',
-                                    'Messages are successfully removed.',
+                message = ungettext('Message was successfully removed.',
+                                    'Messages were successfully removed.',
                                     len(changed_message_list))
 
             messages.success(request, message, fail_silently=True)
