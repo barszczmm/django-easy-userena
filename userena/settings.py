@@ -98,6 +98,8 @@ USERENA_USERNAME_MIN_LENGTH = getattr(settings,
 USERENA_USERNAME_MAX_LENGTH = getattr(settings,
                                       'USERENA_USERNAME_MAX_LENGTH',
                                       30)
+if USERENA_USERNAME_MAX_LENGTH > 30:
+    USERENA_USERNAME_MAX_LENGTH = 30
 
 USERENA_PASSWORD_MIN_LENGTH = getattr(settings,
                                       'USERENA_PASSWORD_MIN_LENGTH',

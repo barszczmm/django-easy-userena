@@ -81,6 +81,9 @@ USERENA_USERNAME_MAX_LENGTH
 Default: ``30`` (integer)
 
 Maximum length of username in signup form.
+This value can not be higher than 30 (because django.contrib.auth.User's
+username field max_length is set to 30). If it set to value higher than 30
+it will be resetted to 30.
 
 USERENA_PASSWORD_MIN_LENGTH
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
