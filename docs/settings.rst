@@ -70,6 +70,30 @@ Default: ``('signup', 'signout', 'signin', 'activate', 'me', 'password')`` (tupl
 A tuple containing the names which cannot be used as username in the signup
 form.
 
+USERENA_USERNAME_MIN_LENGTH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``5`` (integer)
+
+Minimum length of username in signup form.
+
+USERENA_USERNAME_MAX_LENGTH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``30`` (integer)
+
+Maximum length of username in signup form.
+
+USERENA_PASSWORD_MIN_LENGTH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``5`` (integer)
+
+Minimum length of password in signup form.
+
+USERENA_PASSWORD_MAX_LENGTH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``30`` (integer)
+
+Maximum length of password in signup form.
+
 .. _userena-mugshot-gravatar:
 
 USERENA_MUGSHOT_GRAVATAR
