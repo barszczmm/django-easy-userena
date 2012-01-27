@@ -90,3 +90,19 @@ USERENA_LANGUAGE_FIELD = getattr(settings,
 USERENA_WITHOUT_USERNAMES = getattr(settings,
                                     'USERENA_WITHOUT_USERNAMES',
                                     False)
+
+USERENA_USERNAME_MIN_LENGTH = getattr(settings,
+                                      'USERENA_USERNAME_MIN_LENGTH',
+                                      5)
+
+USERENA_USERNAME_MAX_LENGTH = getattr(settings,
+                                      'USERENA_USERNAME_MAX_LENGTH',
+                                      30)
+
+USERENA_PASSWORD_MIN_LENGTH = getattr(settings,
+                                      'USERENA_PASSWORD_MIN_LENGTH',
+                                      5)
+
+USERENA_PASSWORD_MAX_LENGTH = getattr(settings,
+                                      'USERENA_PASSWORD_MAX_LENGTH',
+                                      30)
