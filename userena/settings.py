@@ -93,7 +93,7 @@ USERENA_WITHOUT_USERNAMES = getattr(settings,
 
 USERENA_USERNAME_MIN_LENGTH = getattr(settings,
                                       'USERENA_USERNAME_MIN_LENGTH',
-                                      5)
+                                      1)
 
 USERENA_USERNAME_MAX_LENGTH = getattr(settings,
                                       'USERENA_USERNAME_MAX_LENGTH',
@@ -101,7 +101,7 @@ USERENA_USERNAME_MAX_LENGTH = getattr(settings,
 
 USERENA_PASSWORD_MIN_LENGTH = getattr(settings,
                                       'USERENA_PASSWORD_MIN_LENGTH',
-                                      5)
+                                      1)
 
 USERENA_PASSWORD_MAX_LENGTH = getattr(settings,
                                       'USERENA_PASSWORD_MAX_LENGTH',

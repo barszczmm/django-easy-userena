@@ -72,7 +72,7 @@ form.
 
 USERENA_USERNAME_MIN_LENGTH
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Default: ``5`` (integer)
+Default: ``1`` (integer)
 
 Minimum length of username in signup form.
 
@@ -84,7 +84,7 @@ Maximum length of username in signup form.
 
 USERENA_PASSWORD_MIN_LENGTH
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Default: ``5`` (integer)
+Default: ``1`` (integer)
 
 Minimum length of password in signup form.
 
