@@ -31,7 +31,7 @@ def upload_to_mugshot(instance, filename):
 
     """
     extension = filename.split('.')[-1].lower()
-    salt, hash = generate_sha1(instance.id)
+    salt, hash = generate_sha1(instance.pk)
     return '%(path)s%(hash)s.%(extension)s' % {'path': userena_settings.USERENA_MUGSHOT_PATH,
                                                'hash': hash[:10],
                                                'extension': extension}
@@ -209,6 +209,7 @@ class UserenaBaseProfile(models.Model):
 
     mugshot = ThumbnailerImageField(_('mugshot'),
                                     blank=True,
+                                    null=True,
                                     upload_to=upload_to_mugshot,
                                     resize_source=MUGSHOT_SETTINGS,
                                     help_text=_('A personal image displayed in your profile.'))
