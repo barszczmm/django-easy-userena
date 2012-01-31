@@ -10,12 +10,11 @@ from django.core.exceptions import ImproperlyConfigured
 
 from userena.utils import get_gravatar, generate_sha1, get_protocol, get_datetime_now
 from userena.managers import UserenaManager, UserenaBaseProfileManager
+from userena.fields import ThumbnailerImageField
 from userena import settings as userena_settings
 
 from guardian.shortcuts import get_perms
 from guardian.shortcuts import assign
-
-from easy_thumbnails.fields import ThumbnailerImageField
 
 import datetime, random
 

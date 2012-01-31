@@ -144,6 +144,20 @@ Default: ``80`` (int)
 
 Integer defining the size (in pixels) of the sides of the mugshot image.
 
+USERENA_MUGSHOT_CROP_APP
+~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``easy_thumbnails`` (string)
+
+Which app or library should be used for cropping user uploaded mugshots.
+Currently two values are available:
+
+``easy_thumbnails``
+    Feature rich, popular and well tested but can be an overkill if it's
+    not used in the project, can also casue conflicts with sorl.thumbnail app.
+
+``PIL``
+    Very simple, requires only Python Imaging Library.
+
 USERENA_MUGSHOT_PATH
 ~~~~~~~~~~~~~~~~~~~~
 Default: ``mugshots/`` (string)
