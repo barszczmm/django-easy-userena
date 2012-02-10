@@ -13,9 +13,6 @@ from userena.managers import UserenaManager, UserenaBaseProfileManager
 from userena.fields import ThumbnailerImageField
 from userena import settings as userena_settings
 
-from guardian.shortcuts import get_perms
-from guardian.shortcuts import assign
-
 import datetime, random
 
 PROFILE_PERMISSIONS = (
@@ -343,10 +340,6 @@ class UserenaBaseProfile(models.Model):
         if self.privacy == 'open': return True
         # Registered users.
         elif self.privacy == 'registered' and isinstance(user, User):
-            return True
-
-        # Checks done by guardian for owner and admins.
-        elif 'view_profile' in get_perms(user, self):
             return True
 
         # Fallback to closed profile.

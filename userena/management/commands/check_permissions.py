@@ -24,19 +24,13 @@ class Command(NoArgsCommand):
     
     help = 'Check that user permissions are correct.'
     def handle_noargs(self, **options):
-        permissions, users, warnings  = UserenaSignup.objects.check_permissions()
+        warnings  = UserenaSignup.objects.check_permissions()
         output = options.pop("output")
         test = options.pop("test")
         if test:
             self.stdout.write(40 * ".")
             self.stdout.write("\nChecking permission management command. Ignore output..\n\n")
         if output:
-            for p in permissions:
-                self.stdout.write("Added permission: %s\n" % p)
-
-            for u in users:
-                self.stdout.write("Changed permissions for user: %s\n" % u)
-
             for w in warnings:
                 self.stdout.write("WARNING: %s\n" %w)
 

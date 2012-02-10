@@ -20,8 +20,6 @@ from userena.utils import signin_redirect, get_profile_model
 from userena import signals as userena_signals
 from userena import settings as userena_settings
 
-from guardian.decorators import permission_required_or_403
-
 @secure_required
 def signup(request, signup_form=SignupForm,
            template_name='userena/signup_form.html', success_url=None,
@@ -316,7 +314,7 @@ def signin(request, auth_form=AuthenticationForm,
 
 
 @secure_required
-@permission_required_or_403('change_user', (User, 'username', 'username'))
+@login_required
 def email_change(request, username, email_form=ChangeEmailForm,
                  template_name='userena/email_form.html', success_url=None,
                  extra_context=None):
@@ -361,6 +359,9 @@ def email_change(request, username, email_form=ChangeEmailForm,
     """
     user = get_object_or_404(User, username__iexact=username)
 
+    if request.user != user:
+        return HttpResponseForbidden()
+
     form = email_form(user)
 
     if request.method == 'POST':
@@ -383,7 +384,7 @@ def email_change(request, username, email_form=ChangeEmailForm,
                               extra_context=extra_context)
 
 @secure_required
-@permission_required_or_403('change_user', (User, 'username', 'username'))
+@login_required
 def password_change(request, username, template_name='userena/password_form.html',
                     pass_form=PasswordChangeForm, success_url=None, extra_context=None):
     """ Change password of user.
@@ -425,6 +426,9 @@ def password_change(request, username, template_name='userena/password_form.html
     user = get_object_or_404(User,
                              username__iexact=username)
 
+    if request.user != user:
+        return HttpResponseForbidden()
+
     form = pass_form(user=user)
 
     if request.method == "POST":
@@ -448,7 +452,7 @@ def password_change(request, username, template_name='userena/password_form.html
                               extra_context=extra_context)
 
 @secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+@login_required
 def profile_edit(request, username, edit_profile_form=EditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None, **kwargs):
@@ -495,6 +499,9 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     """
     user = get_object_or_404(User,
                              username__iexact=username)
+
+    if request.user != user:
+        return HttpResponseForbidden()
 
     profile = user.get_profile()
 
