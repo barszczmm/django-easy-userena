@@ -24,7 +24,6 @@ setup(name='django-userena',
       include_package_data=True,
       install_requires = [
         'Django>=1.2.1',
-        'easy_thumbnails',
         ### Required to build documentation
         # 'sphinx',
         # 'south',

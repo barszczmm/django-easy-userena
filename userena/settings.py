@@ -65,7 +65,7 @@ USERENA_MUGSHOT_SIZE = getattr(settings,
 
 USERENA_MUGSHOT_CROP_APP = getattr(settings,
                                    'USERENA_MUGSHOT_CROP_APP',
-                                   'easy_thumbnails')
+                                   'PIL')
 
 USERENA_MUGSHOT_CROP_TYPE = getattr(settings,
                                     'USERENA_MUGSHOT_CROP_TYPE',
