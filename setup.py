@@ -11,16 +11,15 @@ except IOError, err:
         "``long_description`` (%s)\n" % readme_file)
     sys.exit(1)
 
-setup(name='django-userena',
+setup(name='django-easy-userena',
       version=userena.get_version(),
       description='Complete user management application for Django',
       long_description=long_description,
       zip_safe=False,
-      author='Petar Radosevic',
-      author_email='petar@wunki.org',
-      url='https://github.com/bread-and-pepper/django-userena/',
-      download_url='https://github.com/bread-and-pepper/django-userena/downloads',
-      packages = find_packages(exclude=['demo_project', 'demo_project.*']),
+      author='Maciej Marczewski',
+      author_email='maciej@marczewski.net.pl',
+      url='https://github.com/barszczmm/django-easy-userena/',
+      download_url='https://github.com/barszczmm/django-easy-userena/downloads',
       include_package_data=True,
       install_requires = [
         'Django>=1.2.1',
