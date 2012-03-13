@@ -1,18 +1,26 @@
-# Django Userena
+# Django Easy Userena
 
-Userena is a Django application that supplies your Django project with full
-account management. It's a fully customizable application that takes care of
-the signup, activation, messaging and more. It's BSD licensed, which means you
-can use it commercially for free!
+This is simplified fork of great [Django Userena](https://github.com/bread-and-pepper/django-userena) with less dependencies and hopefully easier setup and customization process. I will try to merge all interesting changes from upstream to this fork.
 
-## [Documentation](http://docs.django-userena.org/en/latest/index.html)
+## Why fork?
 
-Complete documentation about the
-[installation](http://docs.django-userena.org/en/latest/installation.html),
-[settings](http://docs.django-userena.org/en/latest/settings.html) and
-[F.A.Q.](http://docs.django-userena.org/en/latest/faq.html) is available on
-[Read the Docs](http://docs.django-userena.org/en/latest/index.html).
++    I found that each time I use Userena I have to overwrite almost all of the templates because they require `title`, `content` and `content-title` blocks in base template.
++    I never needed django-guardian functionality. When I wanted to use Userena on site with about 50000 accounts I had to add all django-guardian permissions for all accounts and it was painful process and it obviously increased database size.
++    I wanted to use Userena on project which already uses sorl-thumbnail and it caused conflicts with easy-thumbnails which Django Userena depends on.
 
-## [Demo](http://django-userena.org/)
+## Differences from Django Userena
 
-Want to test userena first, you can do just that at [django-userena.org](http://django-userena.org/).
++    removed dependency on django-guardian
++    removed dependency on easy-thumbnails and added simple ImageField replacement that crops image on upload
++    added some settings:  
+     `USERENA_USERNAME_MIN_LENGTH`  
+     `USERENA_USERNAME_MAX_LENGTH`  
+     `USERENA_PASSWORD_MIN_LENGTH`  
+     `USERENA_PASSWORD_MAX_LENGTH`
++    refactored all templates to be easier for customization (Django Userena requires you to have `title`, `content` and `content-title` blocks in your base template, Django Easy Userena uses `userena-title`, `userena-content` and `userena-content-title` blocks which can be inserted into any block you have in your base template by overwriting just `userena/base.html` template)
+
+More information in the documentation.
+
+## Documentation
+
+Will be updated and available on Read The Docs soon.
