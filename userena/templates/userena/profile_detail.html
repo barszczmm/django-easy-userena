@@ -9,7 +9,7 @@
 		{% if profile.user.get_full_name %}
 			<p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
 		{% endif %}
-		{% if profile.user.email %}
+		{% if profile.user.email and not hide_email %}
 			<p><strong>{% trans "Email" %}</strong><br />{{ profile.user.email }}</p>
 		{% endif %}
 	</div>

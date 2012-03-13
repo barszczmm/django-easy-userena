@@ -36,7 +36,7 @@ USERENA_ACTIVATION_NOTIFY
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Default: ``True`` (boolean)
 
-A boolean that turns on/of the sending of a notification when
+A boolean that turns on/off the sending of a notification when
 ``USERENA_ACTIVATION_NOTIFY_DAYS`` away the activation of the user will
 expire and the user will be deleted.
 
@@ -188,6 +188,13 @@ options:
 ``open``
     All users (registered and anonymous) can view their profile.
 
+USERENA_PROFILE_DETAIL_TEMPLATE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``userena/profile_detail.html`` (string)
+
+Template to use for rendering user profiles. This allows you to specify a
+template in your own project which extends ``userena/profile_detail.html``.
+
 USERENA_DISABLE_PROFILE_LIST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Default: ``False`` (boolean)
@@ -216,6 +223,13 @@ Default: ``False`` (boolean)
 Defines if usernames are used within userena. Currently it's often for the
 users convenience that only an email is used for identification. With this
 setting you get just that.
+
+USERENA_HIDE_EMAIL
+~~~~~~~~~~~~~~~~~~
+Default: ``False`` (boolean)
+
+Prevents email addresses from being displayed to other users if set to `
+`True``.
 
 Django settings
 ---------------

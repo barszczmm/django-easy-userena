@@ -225,6 +225,7 @@ def direct_to_user_template(request, username, template_name,
 
     if not extra_context: extra_context = dict()
     extra_context['viewed_user'] = user
+    extra_context['profile'] = user.get_profile()
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -379,6 +380,7 @@ def email_change(request, username, email_form=ChangeEmailForm,
 
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
+    extra_context['profile'] = user.get_profile()
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -447,6 +449,7 @@ def password_change(request, username, template_name='userena/password_form.html
 
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
+    extra_context['profile'] = user.get_profile()
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -533,7 +536,10 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
                               extra_context=extra_context,
                               **kwargs)
 
-def profile_detail(request, username, template_name='userena/profile_detail.html', extra_context=None, **kwargs):
+def profile_detail(
+    request, username,
+    template_name=userena_settings.USERENA_PROFILE_DETAIL_TEMPLATE,
+    extra_context=None, **kwargs):
     """
     Detailed view of an user.
 
@@ -561,6 +567,7 @@ def profile_detail(request, username, template_name='userena/profile_detail.html
         return HttpResponseForbidden(_("You don't have permission to view this profile."))
     if not extra_context: extra_context = dict()
     extra_context['profile'] = user.get_profile()
+    extra_context['hide_email'] = userena_settings.USERENA_HIDE_EMAIL
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context,

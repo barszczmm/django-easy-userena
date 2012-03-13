@@ -6,6 +6,7 @@
 {% block userena_content %}
 	<form action="" method="post" id="signup_form">{% csrf_token %}
 		<fieldset>
+			{{ form.non_field_errors }}
 			{% for field in form %}
 				{{ field.errors }}
 				{% comment %} Displaying checkboxes differently {% endcomment %}
