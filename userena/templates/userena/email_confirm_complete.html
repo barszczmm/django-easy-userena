@@ -1,9 +1,8 @@
-{% extends 'userena/base_userena.html' %}
+{% extends 'userena/base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Email changed!" %}{% endblock %}
-
-{% block content_title %}<h2>{% trans 'New email' %}</h2>{% endblock %}
-{% block content %}
-<p>{% blocktrans with site.name as site %}Your new email address is saved. You can continue using {{ site }} with this email.{% endblocktrans %}</p>
+{% block userena_title %}{% trans "Email changed!" %}{% endblock %}
+{% block userena_content_title %}{% trans 'New email' %}{% endblock %}
+{% block userena_content %}
+	<p>{% blocktrans with site.name as site %}Your new email address is saved. You can continue using {{ site }} with this email.{% endblocktrans %}</p>
 {% endblock %}
