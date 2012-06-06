@@ -13,12 +13,12 @@ This is simplified fork of great [Django Userena](https://github.com/bread-and-p
 +    removed dependency on django-guardian
 +    removed dependency on easy-thumbnails and added simple ImageField replacement that crops image on upload
 +    added some settings:
-     `USERENA_USERNAME_MIN_LENGTH`
-     `USERENA_USERNAME_MAX_LENGTH`
-     `USERENA_PASSWORD_MIN_LENGTH`
-     `USERENA_PASSWORD_MAX_LENGTH`
-	 `USERENA_AUTOCREATE_PROFILE`
-	 `USERENA_MUGSHOT_CROP_APP`
+     `USERENA_USERNAME_MIN_LENGTH`  
+     `USERENA_USERNAME_MAX_LENGTH`  
+     `USERENA_PASSWORD_MIN_LENGTH`  
+     `USERENA_PASSWORD_MAX_LENGTH`  
+	 `USERENA_AUTOCREATE_PROFILE`  
+	 `USERENA_MUGSHOT_CROP_APP`  
 +    refactored all templates to be easier for customization (Django Userena requires you to have `title`, `content` and `content-title` blocks in your base template, Django Easy Userena uses `userena-title`, `userena-content` and `userena-content-title` blocks which can be inserted into any block you have in your base template by overwriting just `userena/base.html` template)
 
 More information in the documentation.
