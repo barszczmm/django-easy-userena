@@ -1,7 +1,5 @@
 from django.conf.urls.defaults import *
-from django.views.generic.simple import direct_to_template
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.decorators import login_required
 
 from userena import views as userena_views
 from userena import settings as userena_settings

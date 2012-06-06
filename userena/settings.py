@@ -121,3 +121,7 @@ USERENA_PASSWORD_MAX_LENGTH = getattr(settings,
                                       'USERENA_PASSWORD_MAX_LENGTH',
                                       30)
 
+USERENA_AUTOCREATE_PROFILE = getattr(settings,
+                                     'USERENA_AUTOCREATE_PROFILE',
+                                     True)
+

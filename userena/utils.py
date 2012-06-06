@@ -1,13 +1,13 @@
+import urllib, random, datetime
+
 from django.conf import settings
 from django.utils.hashcompat import sha_constructor
+from django.utils.hashcompat import md5_constructor
 from django.contrib.auth.models import SiteProfileNotAvailable
 from django.db.models import get_model
 
 from userena import settings as userena_settings
 
-import urllib, random, datetime
-
-from django.utils.hashcompat import md5_constructor
 
 def get_gravatar(email, size=80, default='identicon'):
     """ Get's a Gravatar for a email address.
@@ -95,7 +95,7 @@ def generate_sha1(string, salt=None):
     """
     if not salt:
         salt = sha_constructor(str(random.random())).hexdigest()[:5]
-    hash = sha_constructor(salt+str(string)).hexdigest()
+    hash = sha_constructor(salt + str(string)).hexdigest()
 
     return (salt, hash)
 
@@ -115,6 +115,23 @@ def get_profile_model():
     if profile_mod is None:
         raise SiteProfileNotAvailable
     return profile_mod
+
+def get_profile(user):
+    """
+    Return user profile instance if it exists. If user profile does not exist
+    and ``USERENA_AUTOCREATE_PROFILE`` is set to True automatically creates
+    profile and returns it.
+    """
+    if userena_settings.USERENA_AUTOCREATE_PROFILE:
+        try:
+            return user.get_profile()
+        except get_profile_model().DoesNotExist:
+            profile_model = get_profile_model()
+            profile = profile_model(user=user)
+            profile.save()
+            return profile
+    else:
+        return user.get_profile()
 
 def get_protocol():
     """

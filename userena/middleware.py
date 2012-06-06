@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import SiteProfileNotAvailable
 
 from userena import settings as userena_settings
+from userena.utils import get_profile
 
 class UserenaLocaleMiddleware(object):
     """
@@ -18,7 +19,7 @@ class UserenaLocaleMiddleware(object):
         if not lang_cookie:
             if request.user.is_authenticated():
                 try:
-                    profile = request.user.get_profile()
+                    profile = get_profile(request.user)
                 except (ObjectDoesNotExist, SiteProfileNotAvailable):
                     profile = False
 

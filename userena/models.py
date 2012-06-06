@@ -4,16 +4,14 @@ from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
-from django.core.exceptions import ImproperlyConfigured
 
 from userena.utils import get_gravatar, generate_sha1, get_protocol, get_datetime_now
 from userena.managers import UserenaManager, UserenaBaseProfileManager
 from userena.fields import ThumbnailerImageField
 from userena import settings as userena_settings
 
-import datetime, random
+import datetime
 
 PROFILE_PERMISSIONS = (
             ('view_profile', 'Can view profile'),
@@ -113,7 +111,7 @@ class UserenaSignup(models.Model):
         a request is made to change this email address.
 
         """
-        context= {'user': self.user,
+        context = {'user': self.user,
                   'without_usernames': userena_settings.USERENA_WITHOUT_USERNAMES,
                   'new_email': self.email_unconfirmed,
                   'protocol': get_protocol(),
@@ -145,7 +143,7 @@ class UserenaSignup(models.Model):
         send_mail(subject_new,
                   message_new,
                   settings.DEFAULT_FROM_EMAIL,
-                  [self.email_unconfirmed,])
+                  [self.email_unconfirmed, ])
 
     def activation_key_expired(self):
         """
@@ -175,7 +173,7 @@ class UserenaSignup(models.Model):
         user.
 
         """
-        context= {'user': self.user,
+        context = {'user': self.user,
                   'without_usernames': userena_settings.USERENA_WITHOUT_USERNAMES,
                   'protocol': get_protocol(),
                   'activation_days': userena_settings.USERENA_ACTIVATION_DAYS,
@@ -191,7 +189,7 @@ class UserenaSignup(models.Model):
         send_mail(subject,
                   message,
                   settings.DEFAULT_FROM_EMAIL,
-                  [self.user.email,])
+                  [self.user.email, ])
 
 class UserenaBaseProfile(models.Model):
     """ Base model needed for extra profile functionality """
@@ -216,7 +214,7 @@ class UserenaBaseProfile(models.Model):
                                max_length=15,
                                choices=PRIVACY_CHOICES,
                                default=userena_settings.USERENA_DEFAULT_PRIVACY,
-                               help_text = _('Designates who can view your profile.'))
+                               help_text=_('Designates who can view your profile.'))
 
     objects = UserenaBaseProfileManager()
 

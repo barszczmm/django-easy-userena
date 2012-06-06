@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.views.generic import list_detail
@@ -15,8 +14,7 @@ from userena.forms import (SignupForm, SignupFormOnlyEmail, AuthenticationForm,
                            ChangeEmailForm, EditProfileForm)
 from userena.models import UserenaSignup
 from userena.decorators import secure_required
-from userena.backends import UserenaAuthenticationBackend
-from userena.utils import signin_redirect, get_profile_model
+from userena.utils import signin_redirect, get_profile_model, get_profile
 from userena import signals as userena_signals
 from userena import settings as userena_settings
 
@@ -225,7 +223,7 @@ def direct_to_user_template(request, username, template_name,
 
     if not extra_context: extra_context = dict()
     extra_context['viewed_user'] = user
-    extra_context['profile'] = user.get_profile()
+    extra_context['profile'] = get_profile(user)
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -380,7 +378,7 @@ def email_change(request, username, email_form=ChangeEmailForm,
 
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
-    extra_context['profile'] = user.get_profile()
+    extra_context['profile'] = get_profile(user)
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -449,7 +447,7 @@ def password_change(request, username, template_name='userena/password_form.html
 
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
-    extra_context['profile'] = user.get_profile()
+    extra_context['profile'] = get_profile(user)
     return direct_to_template(request,
                               template_name,
                               extra_context=extra_context)
@@ -506,7 +504,7 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     if request.user != user:
         return HttpResponseForbidden()
 
-    profile = user.get_profile()
+    profile = get_profile(user)
 
     user_initial = {'first_name': user.first_name,
                     'last_name': user.last_name}
@@ -562,11 +560,11 @@ def profile_detail(
     """
     user = get_object_or_404(User,
                              username__iexact=username)
-    profile = user.get_profile()
+    profile = get_profile(user)
     if not profile.can_view_profile(request.user):
         return HttpResponseForbidden(_("You don't have permission to view this profile."))
     if not extra_context: extra_context = dict()
-    extra_context['profile'] = user.get_profile()
+    extra_context['profile'] = get_profile(user)
     extra_context['hide_email'] = userena_settings.USERENA_HIDE_EMAIL
     return direct_to_template(request,
                               template_name,

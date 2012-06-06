@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Q
-from django.contrib.auth.models import User, UserManager, Permission, AnonymousUser
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.utils.translation import ugettext as _
 
 from userena import settings as userena_settings
@@ -41,8 +40,6 @@ class UserenaManager(UserManager):
         :return: :class:`User` instance representing the new user.
 
         """
-        now = datetime.datetime.now()
-
         new_user = User.objects.create_user(username, email, password)
         new_user.is_active = active
         new_user.save()
@@ -59,7 +56,7 @@ class UserenaManager(UserManager):
 
         if send_email:
             userena_profile.send_activation_email()
- 
+
         return new_user
 
     def create_userena_profile(self, user):
@@ -145,7 +142,7 @@ class UserenaManager(UserManager):
             else:
                 user = userena.user
                 user.email = userena.email_unconfirmed
-                userena.email_unconfirmed, userena.email_confirmation_key = '',''
+                userena.email_unconfirmed, userena.email_confirmation_key = '', ''
                 userena.save(using=self._db)
                 user.save(using=self._db)
 
@@ -185,7 +182,7 @@ class UserenaManager(UserManager):
         for user in User.objects.all():
             if not user.username == 'AnonymousUser':
                 try:
-                    user_profile = user.get_profile()
+                    user.get_profile()
                 except get_profile_model().DoesNotExist:
                     warnings.append(_("No profile found for %(username)s") \
                                         % {'username': user.username})

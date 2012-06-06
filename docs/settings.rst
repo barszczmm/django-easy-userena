@@ -97,6 +97,14 @@ Default: ``30`` (integer)
 
 Maximum length of password in signup form.
 
+USERENA_AUTOCREATE_PROFILE
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Default: ``True`` (boolean)
+
+Userena views and functions will create profile instance when it is accessed
+and it does not exist and this setting is set to True. Otherwise standard
+DoesNotExist exception is thrown.
+
 .. _userena-mugshot-gravatar:
 
 USERENA_MUGSHOT_GRAVATAR
