@@ -13,6 +13,7 @@ This is simplified fork of great [Django Userena](https://github.com/bread-and-p
 +    removed dependency on django-guardian
 +    removed dependency on easy-thumbnails and added simple ImageField replacement that crops image on upload
 +    added some settings:
+
      `USERENA_USERNAME_MIN_LENGTH`  
      `USERENA_USERNAME_MAX_LENGTH`  
      `USERENA_PASSWORD_MIN_LENGTH`  
